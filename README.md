@@ -1,7 +1,7 @@
 # SystemDaemon
 Simple base for creation daemons.
 
-Why do you need SystemDemon?
+### Why do you need SystemDemon?
 
 1. You want to create a daemon (the process that works in the background) and be able to manage it
 2. You want to get rid of unnecessary dependencies in the project
@@ -10,6 +10,7 @@ Why do you need SystemDemon?
 If all three items are valid for your situation, SystemDaemon will satisfy all your needs.
 
 What you need to create your own demon:
+
 1. Create a class that inherits AbstractDaemon and implement methods for working in the background
 2. Run an instance of this class or use DaemonManager
 
