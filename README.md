@@ -5,16 +5,18 @@ Simple base for creation daemons.
 
 1. You want to create a daemon (the process that works in the background) and be able to manage it
 2. You want to get rid of unnecessary dependencies in the project
-3. You do not want to manually make a foundation for such a demon
+3. You do not want to manually make a base for such a demon
 
 If all three items are valid for your situation, SystemDaemon will satisfy all your needs.
 
-What you need to create your own demon:
+**What you need to create your own demon:**
 
-1. Create a class that inherits AbstractDaemon and implement methods for working in the background
-2. Run an instance of this class or use DaemonManager
+1. Create a class that inherits `AbstractDaemon` and implement methods for working in the background
+2. Run an instance of this class or use `DaemonManager`
 
-In fact, you can not create a new class, but use the base class to create a daemon. We will use DaemonManager not to write the code for processing user commands for starting / stopping the daemon.
+In fact, you can avoid creating a new class and use the base class to create a daemon to see it's work. Also we will use `DaemonManager` not to write the code for processing user commands for starting / stopping the daemon.
+
+`DaemonManager` processes input in the command line and runs the necessary methods of the `AbstractDaemon` class to start, stop, check the status of the daemon and etc.
 
 The simplest daemon that simply outputs simple messages to the log:
 ```php
@@ -30,20 +32,28 @@ $daemon->setLogger(AbstractDaemon::FILES);
 
 (new DaemonManager($daemon))->handleConsole($argc, $argv);
 ```
+
 Save this file as **daemon** and run it using php:
+
 ```sh
 $ php daemon
 ```
+
 You will see a simple help listing the valid commands for starting / stopping / checking the status of the job:
+
 ```
 Manager for daemon "example". Available operations: daemon (start | status | stop | kill)
 ```
+
 To start the daemon, simply call the same script with the `start` command. If successful, the process ID after the start will be displayed, which can be used to view the statistics of this process.
+
 ```sh
 $ php daemon start
 Successfully started. Pid is 8868
 ```
-Since logging was enabled, you can open the file **/tmp/daemon-example.log** (or **/var/log/daemon-example.log** if permissions are allowed) and see what the daemon writes:
+
+_Since logging was enabled, you can open the file **/tmp/daemon-example.log** (or **/var/log/daemon-example.log** if permissions are allowed) and see what the daemon writes:_
+
 ```
 2017-07-28 23:56:40 info: This is a informing message. Reimplement wapmorgan\SystemDaemon\AbstractDaemon::onStart() method to do real work.
 2017-07-28 23:56:42 info: This is a informing message. Reimplement wapmorgan\SystemDaemon\AbstractDaemon::onStart() method to do real work.
@@ -51,13 +61,6 @@ Since logging was enabled, you can open the file **/tmp/daemon-example.log** (or
 ...
 ```
 This is a standard stub message that is written to the log, unless the standard daemon methods in which all the work is done have been redefined.
-
-The main features that `AbstractDaemon` provides:
-1. Start the daemon in the background. The ban on running multiple copies of the daemon using a lock file.
-2. Create a log file and write messages to it.
-3. This has not yet been considered, but the daemon can be of two types: the usual (in which the `onStart()` method is started once and all the work is done) and a daemon waking up at certain intervals (called "ticks") and working in it Occurs already in the `onTick()` method.
-
-`DaemonManager` processes input in the command line and runs the necessary methods of the `AbstractDaemon` class to start, stop, check the status of the daemon and etc.
 
 You can not use `DaemonManager`, if it is not necessary. Then, to control the daemon, use the following methods of `AbstractDaemon`:
 
@@ -67,6 +70,11 @@ You can not use `DaemonManager`, if it is not necessary. Then, to control the da
 - `getStatus()`: return `false` if daemon is not running, `stdClass` object with daemon information if running.
 
 All these methods can throw exceptions if something goes wrong (for example, there is not enough permissions to remove the lock file, if the unprivileged user is trying to stop the daemon started by root), so take care of handling such situations.
+
+To resume: the main features that `AbstractDaemon` provides:
+1. Start the daemon in the background. The ban on running multiple copies of the daemon using a lock file.
+2. Create a log file and write messages to it.
+3. The daemon can be of two types: a normal daemon (in which the `onStart()` method is started once and all the work is done) and a daemon waking up at certain intervals (called "ticks") and executing the `onTick()` method.
 
 # Types of daemons
 The created daemon can work in two modes:
