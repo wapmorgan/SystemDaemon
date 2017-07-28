@@ -1,15 +1,15 @@
 # SystemDaemon
 Simple base for creation daemons.
 
-### Why do you need SystemDemon?
+### Why do you need SystemDaemon?
 
 1. You want to create a daemon (the process that works in the background) and be able to manage it
 2. You want to get rid of unnecessary dependencies in the project
-3. You do not want to manually make a base for such a demon
+3. You do not want to manually make a base for such a daemon
 
 If all three items are valid for your situation, SystemDaemon will satisfy all your needs.
 
-**What you need to create your own demon:**
+**What you need to create your own daemon:**
 
 1. Create a class that inherits `AbstractDaemon` and implement methods for working in the background
 2. Run an instance of this class or use `DaemonManager`
@@ -91,7 +91,7 @@ The created daemon can work in two modes:
   }
   ```
 
-2. **Ticking**. When a demon wakes up at regular intervals, it gets some information, does its job and falls asleep until the next "tick". To use this mode, you need to transfer the `AbstractDaemon::TICKABLE` value and the time that the daemon will wake up (in seconds) when creating a class instance. For example. So:
+2. **Ticking**. When a daemon wakes up at regular intervals, it gets some information, does its job and falls asleep until the next "tick". To use this mode, you need to transfer the `AbstractDaemon::TICKABLE` value and the time that the daemon will wake up (in seconds) when creating a class instance. For example. So:
 
   ```php
   $daemon = new MyDaemon(AbstractDaemon::TICKABLE, 2); // this daemon will "tick" every 2 seconds
@@ -136,7 +136,7 @@ For example, you can do this:
   }
   ```
   
-2. The ticking demon is easier to use: it continues its ticks until the stop command comes. Thus, you do not need to manually process the commands: the daemon will end after the tick, at the time of processing of which this command came.
+2. The ticking daemon is easier to use: it continues its ticks until the **stop** command comes. Thus, you do not need to manually process this operation. The daemon will end after the tick, at the time of processing of which this command came.
 
 ## Other signals
 You have the ability to process other signals sent by the kill command. At the moment, it is possible to process two signals, which can be used as buffer reset commands, clearing the cache, or something else. These commands are: `SIGUSR1` and `SIGUSR2`.
