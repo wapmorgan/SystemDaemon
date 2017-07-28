@@ -1,0 +1,11 @@
+{
+    "autoload": {
+        "psr-4": {
+            "wapmorgan\\SystemDaemon\\": "src/"
+        }
+    },
+    "require": {
+        "ext-posix": "*",
+        "ext-pcntl": "*"
+    }
+}

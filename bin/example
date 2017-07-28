@@ -1,0 +1,12 @@
+#!/usr/bin/env php
+<?php
+require_once __DIR__.'/../vendor/autoload.php';
+
+use wapmorgan\SystemDaemon\AbstractDaemon;
+use wapmorgan\SystemDaemon\DaemonManager;
+
+$daemon = new AbstractDaemon(AbstractDaemon::NORMAL, 1);
+$daemon->name = 'example';
+$daemon->setLogger(AbstractDaemon::FILES_DEBUG);
+
+(new DaemonManager($daemon))->handleConsole($argc, $argv);
