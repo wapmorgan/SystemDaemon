@@ -1,7 +1,7 @@
 # SystemDaemon
 Simple base for system daemons.
 
-[![Composer package](http://xn--e1adiijbgl.xn--p1acf/badge/wapmorgan/system-daemon)](https://packagist.org/packages/wapmorgan/system-daemon)
+[![Composer package](http://composer.network/badge/wapmorgan/system-daemon)](https://packagist.org/packages/wapmorgan/system-daemon)
 [![Latest Stable Version](https://poser.pugx.org/wapmorgan/system-daemon/v/stable)](https://packagist.org/packages/wapmorgan/system-daemon)
 [![Latest Unstable Version](https://poser.pugx.org/wapmorgan/system-daemon/v/unstable)](https://packagist.org/packages/wapmorgan/system-daemon)
 [![License](https://poser.pugx.org/wapmorgan/system-daemon/license)](https://packagist.org/packages/wapmorgan/system-daemon)
