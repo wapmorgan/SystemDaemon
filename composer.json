@@ -5,6 +5,7 @@
             "wapmorgan\\SystemDaemon\\": "src/"
         }
     },
+    "license": "GPL-3.0-only",
     "require": {
         "ext-posix": "*",
         "ext-pcntl": "*"
