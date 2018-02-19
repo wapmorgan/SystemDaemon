@@ -47,7 +47,7 @@ $ php daemon
 You will see a simple help listing the valid commands for starting / stopping / checking the status of the job:
 
 ```
-Manager for daemon "example". Available operations: daemon (start | status | stop | kill)
+Manager for daemon "example". Available operations: daemon (start | status | stop | restart | kill)
 ```
 
 To start the daemon, simply call the same script with the `start` command. If successful, the process ID after the start will be displayed, which can be used to view the statistics of this process.
