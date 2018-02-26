@@ -1,6 +1,7 @@
 <?php
 namespace wapmorgan\SystemDaemon;
 
+use wapmorgan\SystemDaemon\Loggers\TerminalLogger;
 use wapmorgan\SystemDaemon\Utilities\WindowsFork;
 use Exception;
 
@@ -22,6 +23,7 @@ class AbstractDaemon
     const SYSLOG = 1;
     const FILES = 2;
     const FILES_DEBUG = 3;
+    const TERMINAL = 4;
 
     /**
      * Log message levels
@@ -126,6 +128,8 @@ class AbstractDaemon
                 '{name}' => $this->name,
             ]);
             $this->logger = new Loggers\FilesLogger($log_file);
+        } else if ($log === self::TERMINAL) {
+            $this->logger = new Loggers\TerminalLogger();
         } else
             $this->logger = new Loggers\SyslogLogger();
         return $this;
