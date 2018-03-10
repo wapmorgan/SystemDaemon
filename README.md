@@ -185,6 +185,12 @@ $daemon = new AbstractDaemon();
 $daemon->setLogger(AbstractDaemon::FILES);
 ```
 
+3. Logging to a terminal. Daemon just prints all log messages right on the terminal:
+```php
+$daemon = new AbstractDaemon();
+$daemon->setLogger(AbstractDaemon::TERMINAL);
+```
+
 To send messages to the log in the daemon use `log($level, $message)` method, where `$level` is one of the predefined message severity levels and `$message` messages.
 
 Predefined levels of importance are:
