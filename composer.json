@@ -1,5 +1,6 @@
 {
     "name": "wapmorgan/system-daemon",
+    "description": "Simple base for system daemons",
     "autoload": {
         "psr-4": {
             "wapmorgan\\SystemDaemon\\": "src/"
