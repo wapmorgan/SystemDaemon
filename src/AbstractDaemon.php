@@ -325,7 +325,7 @@ class AbstractDaemon
         pcntl_signal(SIGUSR2, [$this, 'onSigUsr2']);
     }
 
-    protected function onSigTerm()
+    public function onSigTerm()
     {
         if ($this->strategy === self::TICKABLE)
             $this->ticking = false;
@@ -333,20 +333,20 @@ class AbstractDaemon
             $this->handleStop();
     }
 
-    protected function handleStop()
-    {
-        $this->log(self::INFO, 'This is a informing message when calling handleStop() method on normal daemon. Reimplement '.get_class($this).'::handleStop() method to change this behavior.');
-        $this->running = false;
-    }
-
-    protected function onSigUsr1()
+    public function onSigUsr1()
     {
         $this->log(self::INFO, 'Received SIGUSR1 signal. Reimplement '.get_class($this).'::onSigUsr1() method to change this behavior.');
     }
 
-    protected function onSigUsr2()
+    public function onSigUsr2()
     {
         $this->log(self::INFO, 'Received SIGUSR2 signal. Reimplement '.get_class($this).'::onSigUsr2() method to change this behavior.');
+    }
+
+    protected function handleStop()
+    {
+        $this->log(self::INFO, 'This is a informing message when calling handleStop() method on normal daemon. Reimplement '.get_class($this).'::handleStop() method to change this behavior.');
+        $this->running = false;
     }
 
     protected function onStart()
