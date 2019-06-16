@@ -8,11 +8,11 @@ Simple base for system daemons.
 
 ### Why do you need SystemDaemon?
 
-1. You want to create a daemon (the process that works in the background) and be able to manage it
+1. You want to create a daemon (_the process that works in the background_) and be able to manage it
 2. You want to get rid of unnecessary dependencies in the project
-3. You do not want to manually make a base for such a daemon
+3. You do not want to write such a base for a daemon
 
-If all three items are valid for your situation, SystemDaemon will satisfy all your needs.
+If all three rules are fit for you, `SystemDaemon` will satisfy all your needs.
 
 **What you need to create your own daemon:**
 
